@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { v4 as uuidV4 } from 'uuid';
 import { func } from 'prop-types';
 import Button from "../Button";
-import { ACTIVE } from '../../utils';
 
 export default function CreateTask({ createTask }) {
   const [inputValue, setInputValue] = useState('');
@@ -16,12 +14,7 @@ export default function CreateTask({ createTask }) {
     event.preventDefault();
 
     if (inputValue) {
-      const newTask = {
-        id: uuidV4(),
-        nameTask: inputValue,
-        state: ACTIVE,
-      }
-      createTask(newTask);
+      createTask(inputValue);
       setInputValue('');
     }
   }

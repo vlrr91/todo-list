@@ -1,52 +1,50 @@
 import { useState, useEffect } from 'react';
-import { ACTIVE, COMPLETED, ALL, saveTasks, getTasks } from '../../utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { COMPLETED, ALL } from '../../utils';
 import CreateTask from "../CreateTask";
 import StateTabs from '../StateTabs';
 import TodoList from "../TodoList";
 import Button from "../Button";
+// Store
+import {
+  addTaskAction,
+  completeTaskAction,
+  deleteCompletedTasksAction,
+  deleteTaskAction
+} from '../../store/todo/actions';
+import { todoSelector } from '../../store/todo';
 
 export default function Todo() {
-  const tasksFromStorage = getTasks();
-  const [tasks, setTasks] = useState(tasksFromStorage || []);
   const [filterTasks, setFilterTasks] = useState([]);
   const [selectedStateTask, setSelectedStateTask] = useState(ALL);
+  const  dispatch = useDispatch();
+  const tasksList = useSelector(todoSelector);
+
 
   useEffect(() => {
-    saveTasks(tasks);
-
     if (selectedStateTask === ALL) {
-      setFilterTasks(tasks);
+      setFilterTasks(tasksList);
       return;
     }
 
-    const selectedTasks = tasks.filter((task) => task.state === selectedStateTask);
+    const selectedTasks = tasksList.filter((task) => task.state === selectedStateTask);
     setFilterTasks(selectedTasks);
-  }, [selectedStateTask, setFilterTasks, tasks]);
+  }, [selectedStateTask, setFilterTasks, tasksList]);
 
   function createTask(task) {
-    setTasks((prevState) => [...prevState, task]);
+    dispatch(addTaskAction(task));
   }
 
   function updateTask(id, checked) {
-    setTasks((prevState) => {
-      const taskIndex = prevState.findIndex((task) => task.id === id);
-      const newTasks = [...prevState];
-      newTasks[taskIndex] = {
-        ...newTasks[taskIndex],
-        state: checked ? COMPLETED : ACTIVE,
-      };
-      return newTasks;
-    });
+    dispatch(completeTaskAction(id, checked));
   }
 
   function deleteCompletedTasks() {
-    console.log('delete')
-    const activeTasks = tasks.filter((task) => task.state === ACTIVE);
-    setTasks(activeTasks);
+    dispatch(deleteCompletedTasksAction());
   }
 
   function deleteTask(id) {
-    setTasks((prevState) => prevState.filter((task) => task.id !== id));
+    dispatch(deleteTaskAction(id));
   }
 
   return (
