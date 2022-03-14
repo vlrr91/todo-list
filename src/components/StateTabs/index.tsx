@@ -1,19 +1,22 @@
+import React from 'react';
 import { taskState } from "../../utils";
-import styles from './StateTabs.module.css';
 
-export default function StateTabs({ selectedStateTask, setSelectedStateTask }) {
-  function handleSelectedState(state) {
+interface StateTabsProps {
+  selectedStateTask: string;
+  setSelectedStateTask: (state: string) => void;
+}
+
+export default function StateTabs({ selectedStateTask, setSelectedStateTask }: StateTabsProps) {
+  function handleSelectedState(state: string) {
     setSelectedStateTask(state)
   }
 
   return (
     <div>
-      <ul className={styles.tabs}>
+      <ul>
         {taskState.map((state) => {
-          const selectedClass = state === selectedStateTask ? 'selected' : '';
           return (
             <li
-              className={`${styles.itemTabs} ${styles[selectedClass]}`}
               key={state}
               onClick={() => handleSelectedState(state)}
             >
