@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import { Task } from '../../models';
-import Button from "../Button";
+import Button from '../Button';
 
 interface CreateTaskProps {
   createTask: (task: Task) => void;

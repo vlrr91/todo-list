@@ -1,5 +1,5 @@
 import React from 'react';
-import { taskState } from "../../utils";
+import { taskState } from '../../utils';
 
 interface StateTabsProps {
   selectedStateTask: string;
@@ -8,7 +8,7 @@ interface StateTabsProps {
 
 export default function StateTabs({ selectedStateTask, setSelectedStateTask }: StateTabsProps) {
   function handleSelectedState(state: string) {
-    setSelectedStateTask(state)
+    setSelectedStateTask(state);
   }
 
   return (
@@ -16,10 +16,7 @@ export default function StateTabs({ selectedStateTask, setSelectedStateTask }: S
       <ul>
         {taskState.map((state) => {
           return (
-            <li
-              key={state}
-              onClick={() => handleSelectedState(state)}
-            >
+            <li key={state} onClick={() => handleSelectedState(state)}>
               {state}
             </li>
           );

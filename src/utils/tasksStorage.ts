@@ -1,4 +1,4 @@
-import { Task } from "../models";
+import { Task } from '../models';
 
 export function saveTasks(tasks: Task) {
   window.localStorage.setItem('tasks', JSON.stringify(tasks));

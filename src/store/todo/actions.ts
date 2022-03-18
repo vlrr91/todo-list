@@ -1,4 +1,4 @@
-import { Task } from "../../models";
+import { Task } from '../../models';
 
 export const ADD_TASK = 'ADD_TASK';
 export const DELETE_TASK = 'DELETE_TASK';

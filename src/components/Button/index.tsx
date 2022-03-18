@@ -11,12 +11,10 @@ export default function Button({
   children,
   variant = 'primary',
   type = 'button',
-  onClick = undefined
+  onClick = undefined,
 }: ButtonProps) {
   return (
-    <button
-      type={type}
-      onClick={onClick}>
+    <button type={type} onClick={onClick}>
       {children}
     </button>
   );

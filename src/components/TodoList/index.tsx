@@ -5,7 +5,7 @@ import { ACTIVE, COMPLETED } from '../../utils';
 interface TodoListProps {
   tasks: Task[];
   updateTask: (task: Task) => void;
-  selectedStateTab: string; 
+  selectedStateTab: string;
   deleteTask: (task: Task) => void;
 }
 
@@ -13,7 +13,7 @@ export default function TodoList({
   tasks = [],
   updateTask,
   selectedStateTab,
-  deleteTask
+  deleteTask,
 }: TodoListProps) {
   function handleInputChecked(event: ChangeEvent<HTMLInputElement>, task: Task) {
     const { checked } = event.target;
@@ -39,12 +39,13 @@ export default function TodoList({
             />
             <label htmlFor={id}>{name}</label>
             {selectedStateTab === COMPLETED && (
-              <button type="button" onClick={() => deleteTask(task)}>✖</button>
+              <button type="button" onClick={() => deleteTask(task)}>
+                ✖
+              </button>
             )}
           </li>
         );
       })}
     </ul>
-  )
+  );
 }
-

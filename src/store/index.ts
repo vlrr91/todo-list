@@ -11,10 +11,7 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const store = createStore(
-  persistedReducer,
-  composeWithDevTools()
-);
+const store = createStore(persistedReducer, composeWithDevTools());
 
 export const persistor = persistStore(store);
 

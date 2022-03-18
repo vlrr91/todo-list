@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { COMPLETED, ALL } from '../../utils';
-import CreateTask from "../CreateTask";
+import CreateTask from '../CreateTask';
 import StateTabs from '../StateTabs';
-import TodoList from "../TodoList";
-import Button from "../Button";
+import TodoList from '../TodoList';
+import Button from '../Button';
 // Store
 import {
   addTaskAction,
   completeTaskAction,
   deleteCompletedTasksAction,
-  deleteTaskAction
+  deleteTaskAction,
 } from '../../store/todo/actions';
 import { todoSelector } from '../../store/todo';
 import { Task } from '../../models';
@@ -18,7 +18,7 @@ import { Task } from '../../models';
 export default function Todo() {
   const [filterTasks, setFilterTasks] = useState<Task[]>([]);
   const [selectedStateTask, setSelectedStateTask] = useState(ALL);
-  const  dispatch = useDispatch();
+  const dispatch = useDispatch();
   const tasksList = useSelector(todoSelector);
 
   useEffect(() => {
@@ -51,10 +51,9 @@ export default function Todo() {
     <main>
       <StateTabs
         selectedStateTask={selectedStateTask}
-        setSelectedStateTask={setSelectedStateTask} />
-      {selectedStateTask !== COMPLETED && (
-        <CreateTask createTask={createTask} />
-      )}
+        setSelectedStateTask={setSelectedStateTask}
+      />
+      {selectedStateTask !== COMPLETED && <CreateTask createTask={createTask} />}
       <TodoList
         tasks={filterTasks}
         updateTask={updateTask}
@@ -62,7 +61,9 @@ export default function Todo() {
         deleteTask={deleteTask}
       />
       {selectedStateTask === COMPLETED && filterTasks.length >= 0 && (
-        <Button variant="secondary" onClick={deleteCompletedTasks}>delete all</Button>
+        <Button variant="secondary" onClick={deleteCompletedTasks}>
+          delete all
+        </Button>
       )}
     </main>
   );

@@ -14,7 +14,7 @@ interface TodoDispatch {
 export default function todoReducer(state = initialState, action: TodoDispatch): Task[] {
   const { type, payload } = action;
 
-  switch(type) {
+  switch (type) {
     case ADD_TASK:
       return [...state, payload];
     case UPDATE_TASK:
