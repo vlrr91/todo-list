@@ -10,7 +10,7 @@ interface TodoDispatch {
   payload: Task;
 }
 
-// Reducer
+// eslint-disable-next-line @typescript-eslint/default-param-last
 export default function todoReducer(state = initialState, action: TodoDispatch): Task[] {
   const { type, payload } = action;
 

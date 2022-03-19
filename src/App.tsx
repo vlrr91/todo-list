@@ -1,13 +1,14 @@
 import React from 'react';
 
-import './App.css';
+import { Theme, GlobalStyle } from './theme';
 import Todo from './components/Todo';
 
 function App() {
   return (
-    <div>
+    <Theme>
+      <GlobalStyle />
       <Todo />
-    </div>
+    </Theme>
   );
 }
 
