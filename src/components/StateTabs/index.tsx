@@ -1,20 +1,24 @@
-import React from 'react';
-import { taskState } from '../../utils';
+import React, { useContext } from 'react';
+import { TodoContext } from '../../context';
 
-interface StateTabsProps {
-  selectedStateTask: string;
-  setSelectedStateTask: (state: string) => void;
+enum StateTask {
+  ACTIVE = 'active',
+  ALL = 'all',
 }
 
-export default function StateTabs({ selectedStateTask, setSelectedStateTask }: StateTabsProps) {
-  function handleSelectedState(state: string) {
-    setSelectedStateTask(state);
+const states = [StateTask.ALL, StateTask.ACTIVE];
+
+export default function StateTabs() {
+  const { setFilterState } = useContext(TodoContext);
+
+  function handleSelectedState(state: StateTask) {
+    setFilterState(state);
   }
 
   return (
     <div>
       <ul>
-        {taskState.map((state) => {
+        {states.map((state) => {
           return (
             <li key={state} onClick={() => handleSelectedState(state)}>
               {state}

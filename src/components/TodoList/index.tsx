@@ -1,45 +1,35 @@
-import React, { ChangeEvent } from 'react';
-import { Task } from '../../models';
-import { ACTIVE, COMPLETED } from '../../utils';
+import React, { ChangeEvent, useContext } from 'react';
+import { TodoContext } from '../../context';
+import { Task } from '../../models/Task';
 
-interface TodoListProps {
-  tasks: Task[];
-  updateTask: (task: Task) => void;
-  selectedStateTab: string;
-  deleteTask: (task: Task) => void;
-}
+export default function TodoList() {
+  const { todo, updateTask, deleteTask } = useContext(TodoContext);
 
-export default function TodoList({
-  tasks = [],
-  updateTask,
-  selectedStateTab,
-  deleteTask,
-}: TodoListProps) {
-  function handleInputChecked(event: ChangeEvent<HTMLInputElement>, task: Task) {
-    const { checked } = event.target;
+  function handleInputChecked(
+    event: ChangeEvent<HTMLInputElement>,
+    task: Task
+  ) {
     updateTask({
       ...task,
-      state: checked ? COMPLETED : ACTIVE,
+      completed: event.target.checked,
     });
   }
 
   return (
     <ul>
-      {tasks.map((task) => {
-        const { id, name, state } = task;
-        const checkedValue = state === COMPLETED;
+      {todo.map((task) => {
+        const { id, name, completed } = task;
         return (
-          <li>
+          <li key={id}>
             <input
               id={id}
-              key={id}
               type="checkbox"
               onChange={(event) => handleInputChecked(event, task)}
-              checked={checkedValue}
+              checked={completed}
             />
             <label htmlFor={id}>{name}</label>
-            {selectedStateTab === COMPLETED && (
-              <button type="button" onClick={() => deleteTask(task)}>
+            {completed && (
+              <button type="button" onClick={() => deleteTask(id)}>
                 ✖
               </button>
             )}

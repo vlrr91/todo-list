@@ -1,14 +1,11 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useContext } from 'react';
 import { v4 as uuidV4 } from 'uuid';
-import { Task } from '../../models';
+import { TodoContext } from '../../context';
 import Button from '../Button';
 
-interface CreateTaskProps {
-  createTask: (task: Task) => void;
-}
-
-export default function CreateTask({ createTask }: CreateTaskProps) {
+export default function CreateTask() {
   const [inputValue, setInputValue] = useState('');
+  const { addTask } = useContext(TodoContext);
 
   function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
     const { value } = event.target;
@@ -19,10 +16,10 @@ export default function CreateTask({ createTask }: CreateTaskProps) {
     event.preventDefault();
 
     if (inputValue) {
-      createTask({
+      addTask({
         id: uuidV4(),
         name: inputValue,
-        state: 'active',
+        completed: false,
       });
       setInputValue('');
     }

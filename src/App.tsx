@@ -2,12 +2,16 @@ import React from 'react';
 
 import { Theme, GlobalStyle } from './theme';
 import Todo from './components/Todo';
+import { TodoProvider } from './context';
 
 function App() {
   return (
     <Theme>
       <GlobalStyle />
-      <Todo />
+
+      <TodoProvider>
+        <Todo />
+      </TodoProvider>
     </Theme>
   );
 }

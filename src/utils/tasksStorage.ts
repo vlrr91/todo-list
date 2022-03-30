@@ -1,11 +1,11 @@
-import { Task } from '../models';
+import { Task } from '../models/Task';
 
-export function saveTasks(tasks: Task) {
-  window.localStorage.setItem('tasks', JSON.stringify(tasks));
+function saveTasks(tasks: Task[]) {
+  window.localStorage.setItem('todo', JSON.stringify(tasks));
 }
 
-export function getTasks(): Task[] {
-  const tasks = window.localStorage.getItem('tasks');
+function getTasks(): Task[] {
+  const tasks = window.localStorage.getItem('todo');
 
   if (tasks) {
     return JSON.parse(tasks) || [];
@@ -13,3 +13,5 @@ export function getTasks(): Task[] {
 
   return [];
 }
+
+export { saveTasks, getTasks };

@@ -13,8 +13,10 @@ type ThemeProps = {
   children: ReactNode;
 };
 
-export type TypeTheme = typeof theme;
+type TypeTheme = typeof theme;
 
-export function Theme({ children }: ThemeProps) {
+function Theme({ children }: ThemeProps) {
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 }
+
+export { TypeTheme, Theme };
