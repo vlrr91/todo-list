@@ -20,11 +20,7 @@ export default function useTodo() {
   }, [filterState, todo]);
 
   useEffect(() => {
-    console.log(todo, initialLoad);
-    if (!initialLoad.current) {
-      console.log('Save');
-      saveTasks(todo);
-    }
+    if (!initialLoad.current) saveTasks(todo);
   }, [todo]);
 
   useEffect(() => {
