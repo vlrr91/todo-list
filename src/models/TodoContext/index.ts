@@ -12,6 +12,7 @@ interface TypeTodoProvider {
   addTask: (task: Task) => void;
   updateTask: (task: Task) => void;
   deleteTask: (id: string) => void;
+  filterState: StateTask;
   setFilterState: Dispatch<SetStateAction<StateTask>>;
 }
 

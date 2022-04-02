@@ -2,20 +2,16 @@ import React from 'react';
 import CreateTask from '../CreateTask';
 import StateTabs from '../StateTabs';
 import TodoList from '../TodoList';
-// import Button from '../Button';
-// import { Task } from '../../models';
+import { Content } from './styles';
 
 export default function Todo() {
   return (
     <main>
       <StateTabs />
-      <CreateTask />
-      <TodoList />
-      {/* {selectedStateTask === COMPLETED && filterTasks.length >= 0 && (
-        <Button variant="secondary" onClick={deleteCompletedTasks}>
-          delete all
-        </Button>
-      )} */}
+      <Content>
+        <CreateTask />
+        <TodoList />
+      </Content>
     </main>
   );
 }

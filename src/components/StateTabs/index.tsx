@@ -1,31 +1,32 @@
 import React, { useContext } from 'react';
 import { TodoContext } from '../../context';
-
-enum StateTask {
-  ACTIVE = 'active',
-  ALL = 'all',
-}
+import { StateTask } from '../../models/TodoContext';
+import { Container, List, Item } from './styles';
 
 const states = [StateTask.ALL, StateTask.ACTIVE];
 
 export default function StateTabs() {
-  const { setFilterState } = useContext(TodoContext);
+  const { filterState, setFilterState } = useContext(TodoContext);
 
   function handleSelectedState(state: StateTask) {
     setFilterState(state);
   }
 
   return (
-    <div>
-      <ul>
+    <Container>
+      <List>
         {states.map((state) => {
           return (
-            <li key={state} onClick={() => handleSelectedState(state)}>
+            <Item
+              key={state}
+              onClick={() => handleSelectedState(state)}
+              selected={filterState === state}
+            >
               {state}
-            </li>
+            </Item>
           );
         })}
-      </ul>
-    </div>
+      </List>
+    </Container>
   );
 }

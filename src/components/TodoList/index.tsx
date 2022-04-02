@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useContext } from 'react';
 import { TodoContext } from '../../context';
 import { Task } from '../../models/Task';
+import { List, Item, Label, Input, DeleteButton } from './styles';
 
 export default function TodoList() {
   const { todo, updateTask, deleteTask } = useContext(TodoContext);
@@ -16,26 +17,26 @@ export default function TodoList() {
   }
 
   return (
-    <ul>
+    <List>
       {todo.map((task) => {
         const { id, name, completed } = task;
         return (
-          <li key={id}>
-            <input
+          <Item key={id}>
+            <Input
               id={id}
               type="checkbox"
               onChange={(event) => handleInputChecked(event, task)}
               checked={completed}
             />
-            <label htmlFor={id}>{name}</label>
+            <Label htmlFor={id}>{name}</Label>
             {completed && (
-              <button type="button" onClick={() => deleteTask(id)}>
+              <DeleteButton type="button" onClick={() => deleteTask(id)}>
                 ✖
-              </button>
+              </DeleteButton>
             )}
-          </li>
+          </Item>
         );
       })}
-    </ul>
+    </List>
   );
 }

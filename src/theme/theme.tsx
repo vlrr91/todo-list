@@ -6,6 +6,17 @@ const theme = {
     primaryColor: '#673AB7',
     accentColor: '#03A9F4',
     primaryText: '#212121',
+    white: '#FFFFFF',
+    body: '#EEEEEE',
+  },
+  spacing: {
+    s8: '0.5rem',
+    s16: '1rem',
+    s32: '2rem',
+  },
+  dimensions: {
+    maxW600: '600px',
+    d40: '40px',
   },
 };
 

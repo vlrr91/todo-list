@@ -1,8 +1,10 @@
 import React, { ReactNode, MouseEventHandler } from 'react';
+import { VariantButton } from '../../models/UI/Button';
+import { StyledButton } from './styles';
 
 interface ButtonProps {
   children: ReactNode;
-  variant?: 'primary' | 'secondary';
+  variant?: VariantButton;
   type?: 'button' | 'submit' | 'reset' | undefined;
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
 }
@@ -14,8 +16,8 @@ export default function Button({
   onClick = undefined,
 }: ButtonProps) {
   return (
-    <button type={type} onClick={onClick}>
+    <StyledButton type={type} onClick={onClick} variant={variant}>
       {children}
-    </button>
+    </StyledButton>
   );
 }

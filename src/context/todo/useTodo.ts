@@ -12,7 +12,7 @@ export default function useTodo() {
 
   useEffect(() => {
     if (filterState === StateTask.ACTIVE) {
-      setFilteredTodo(todo.filter((task) => task.completed));
+      setFilteredTodo(todo.filter((task) => !task.completed));
       return;
     }
 
@@ -51,6 +51,7 @@ export default function useTodo() {
     addTask,
     updateTask,
     deleteTask,
+    filterState,
     setFilterState,
   };
 }

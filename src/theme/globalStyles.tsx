@@ -14,7 +14,12 @@ const GlobalStyle = createGlobalStyle<{ theme: TypeTheme }>`
       'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: ${({ theme }) => theme.colors.primaryText};
+
+    ${({ theme }) =>
+      `
+      color: ${theme.colors.primaryText};
+      background-color: ${theme.colors.body};
+    `}
   }
 `;
 
